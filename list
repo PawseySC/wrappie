@@ -1,0 +1,14 @@
+docker://ubuntu:18.04
+- ls
+- pwd
+
+ docker://ubuntu:16.04
+ - hostname 
+-  whoami   
+
+#docker://centos:7
+#- mpirun
+#- gcc
+  
+    
+
