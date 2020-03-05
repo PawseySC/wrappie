@@ -10,9 +10,9 @@ Find us on [GitHub](https://github.com/marcodelapierre/container-wrappers)
 ## Quick start
 
 Edit the first few lines of the `setup.sh` script to provide values for the following variables:
-* imagedir: location for downloaded container images
-* wrapdir: location for application wrapper scripts
-* workdir: work directory for production, where data are stored (can be comma separated list)
+* `imagedir`: location for downloaded container images
+* `wrapdir`: location for application wrapper scripts
+* `workdir`: work directory for production, where data are stored (can be comma separated list)
 
 Write a text file, *e.g.* `list_apps`, of this form:
 
