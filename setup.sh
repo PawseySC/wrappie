@@ -3,8 +3,7 @@
 
 
 # relevant variables - can be customised
-imagedir="/data/work/wrappers-sgl/images"
-wrapdir="/data/work/wrappers-sgl/wraps"
+rootdir="/data/work/wrappers-sgl/apps"
 # production directory where all data/analyses are
 # can also be a comma separated list 
 workdir="/data/work,/data/db"
@@ -20,11 +19,11 @@ fi
 listfile=$1
 
 # create directories for images and wrapper scripts
-echo Creating image directory $imagedir ..
-mkdir -p $imagedir
-echo Creating wrappers directory $wrapdir ..
-mkdir -p $wrapdir
+echo Creating image directory $rootdir ..
+mkdir -p $rootdir
 
+# initialise list of tool directories
+appdir_list=""
 
 # read the list of requirements and do stuff
 while read line ; do
@@ -41,21 +40,27 @@ while read line ; do
  # it's an image, so save the name and pull it 
  if [ $type -eq 0 ] ; then
   image=$line
-  sif=${image##*/}
-  sif=${sif/:/_}.sif
-  echo Pulling container image $image ..
-  singularity pull --dir $imagedir $sif $image
+  siftmp=${image##*/}
+  tool=${siftmp%:*}
+  ver=${siftmp#*:}
+  sif=${siftmp/:/_}.sif
+  echo Creating directory for tool $tool version $ver ..
+  appdir="$rootdir/$tool/$ver"
+  mkdir -p $appdir
+  appdir_list+="${appdir}:"
+  echo Pulling container image $image for tool $tool version $ver ..
+  singularity pull --dir $appdir $sif $image
  
  # it's a command, so create the wrapper script
  elif [ $type -eq 1 ] ; then
   cmd=${line##* }
   echo - Creating wrapper for command $cmd
-  cat << EOF >$wrapdir/$cmd
+  cat << EOF >$appdir/$cmd
 #!/bin/bash
 
-singularity exec $imagedir/$sif $cmd "\$@"
+singularity exec $appdir/$sif $cmd "\$@"
 EOF
-  chmod +x $wrapdir/$cmd
+  chmod +x $appdir/$cmd
  fi 
 
 done < $listfile
@@ -67,8 +72,8 @@ All done!
 For proper functioning of this setup, ensure these two definitions are in your ~/.bash_profile :
 
 ##############################
-export PATH=\$PATH:$wrapdir
-export SINGULARITY_BINDPATH=\$SINGULARITY_BINDPATH,$workdir
+export PATH=$appdir_list\$PATH #mycatisawesome
+export SINGULARITY_BINDPATH=\$SINGULARITY_BINDPATH,$workdir #mycatisawesome
 ##############################
 
 EOM
