@@ -1,5 +1,4 @@
 #!/bin/bash
-# assuming singularity is available in the system
 
 
 # relevant variables - can be customised
@@ -9,6 +8,7 @@ rootdir="/data/work/wrappers-sgl/apps"
 workdir="/data/work,/data/db"
 
 
+# prompt for list file
 if [ $# -eq 0 ] ; then
  echo Please provide the name of the list file as an argument. Exiting.
  exit
@@ -37,18 +37,22 @@ while read line ; do
  # is this line an image (0) or a command (1)?
  type=$(echo $line | grep '^-' -c)
 
- # it's an image, so save the name and pull it 
+ # it's an image
  if [ $type -eq 0 ] ; then
+  # save name&infos
   image=$line
+  echo Saving infos for image $image ..
   siftmp=${image##*/}
   tool=${siftmp%:*}
   ver=${siftmp#*:}
-  sif=${siftmp/:/_}.sif
-  echo Creating directory for tool $tool version $ver ..
   appdir="$rootdir/$tool/$ver"
-  mkdir -p $appdir
   appdir_list+="${appdir}:"
-  echo Pulling container image $image for tool $tool version $ver ..
+  sif=${siftmp/:/_}.sif
+  # create directory
+  echo Creating directory for tool $tool version $ver ..
+  mkdir -p $appdir
+  # pull image
+  echo Pulling container image $image ..
   singularity pull --dir $appdir $sif $image
  
  # it's a command, so create the wrapper script
@@ -65,6 +69,7 @@ EOF
 
 done < $listfile
 
+# display information on how to configure shell environment
 cat << EOM
 
 All done!
