@@ -2,16 +2,18 @@
 
 Prototype for automated deployment of applications as bash wrappers around containers.
 
-Assumes [Singularity](http://sylabs.io/singularity) is available in the system.
-
 Find us on [GitHub](https://github.com/marcodelapierre/container-wrappers)
+
+
+## Software requirements
+
+* [Singularity](http://sylabs.io/singularity) : sample [install script](scripts/)
 
 
 ## Quick start
 
 Edit the first few lines of the `setup.sh` script to provide values for the following variables:
-* `imagedir`: location for downloaded container images
-* `wrapdir`: location for application wrapper scripts
+* `rootdir`: upper level directory for the directory tree of packages (containers and wrappers). The tree has the format: `rootdir/tool/tag`
 * `workdir`: work directory for production, where data are stored (can be comma separated list)
 
 Write a text file, *e.g.* `list_apps`, of this form:
