@@ -44,12 +44,12 @@ while read line ; do
   echo Saving infos for image $image ..
   siftmp=${image##*/}
   tool=${siftmp%:*}
-  ver=${siftmp#*:}
-  appdir="$rootdir/$tool/$ver"
+  tag=${siftmp#*:}
+  appdir="$rootdir/$tool/$tag"
   appdir_list+="${appdir}:"
   sif=${siftmp/:/_}.sif
   # create directory
-  echo Creating directory for tool $tool version $ver ..
+  echo Creating directory for tool $tool tag $tag ..
   mkdir -p $appdir
   # pull image
   echo Pulling container image $image ..
