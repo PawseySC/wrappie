@@ -77,8 +77,8 @@ All done!
 For proper functioning of this setup, ensure these two definitions are in your ~/.bash_profile :
 
 ##############################
-export PATH=$appdir_list\$PATH #mycatisawesome
-export SINGULARITY_BINDPATH=\$SINGULARITY_BINDPATH,$workdir #mycatisawesome
+export PATH=$appdir_list\$PATH   #hpc-containers-wrappers
+export SINGULARITY_BINDPATH=\$SINGULARITY_BINDPATH,$workdir   #hpc-containers-wrappers
 ##############################
 
 EOM
