@@ -7,7 +7,7 @@ Find us on [GitHub](https://github.com/marcodelapierre/container-wrappers)
 
 ## Software requirements
 
-* [Singularity](http://sylabs.io/singularity) : sample [install script](scripts/)
+* [Singularity](http://sylabs.io/singularity) : template installation [script](prereqs/install-singularity.sh)
 
 
 ## Quick start
