@@ -3,6 +3,7 @@
 
 # relevant variables - can be customised
 rootdir="/data/work/wrappers-sgl/apps"
+moduledir="/data/work/wrappers-sgl/modules"
 # production directory where all data/analyses are
 # can also be a comma separated list 
 workdir="/data/work,/data/db"
@@ -54,7 +55,26 @@ while read line ; do
   # pull image
   echo Pulling container image $image ..
   singularity pull --dir $appdir $sif $image
- 
+  # create module
+  echo Creating modulefile for tool $tool tag $tag ..
+  mkdir -p $moduledir/$tool
+  cat << EOMM >$moduledir/$tool/$tag
+#%Module1.0######################################################################
+##
+## $tool modulefile
+##
+proc ModulesHelp { } {
+    puts stderr "\tThe $tool Module - tag $tag\n"
+    puts stderr "\tThis module allows you to use the container image $image."
+}
+
+module-whatis   "edits the PATH to use the tool $tool - tag $tag"
+
+prepend-path     PATH            $appdir
+
+EOMM
+
+
  # it's a command, so create the wrapper script
  elif [ $type -eq 1 ] ; then
   cmd=${line##* }
@@ -77,7 +97,7 @@ All done!
 For proper functioning of this setup, ensure these two definitions are in your ~/.bash_profile :
 
 ##############################
-export PATH=$appdir_list\$PATH   #hpc-containers-wrappers
+module use $moduledir   #hpc-containers-wrappers
 export SINGULARITY_BINDPATH=\$SINGULARITY_BINDPATH,$workdir   #hpc-containers-wrappers
 ##############################
 
