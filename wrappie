@@ -7,8 +7,10 @@ if [ ! -z ${PAWSEY_OS+x} ] ; then
   pawsey="y"
   if [ "$(whoami)" == "maali" ] ; then
     basedir=${basedir:-"/pawsey/$PAWSEY_OS"}
+    moduledir=${moduledir:-"$basedir/modulefiles/containers"}
   else
     basedir=${basedir:-"$MYGROUP/software/$PAWSEY_OS"}
+    moduledir=${moduledir:-"$basedir/modulefiles/containers"}
   fi
 fi
 ##################################################
