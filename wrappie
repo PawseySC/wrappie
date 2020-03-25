@@ -1,11 +1,34 @@
 #!/bin/bash
 
 
-# relevant variables - can be customised
+##################################################
+# Don't edit this bit! Specific to Pawsey systems
+if [ ! -z ${PAWSEY_CLUSTER_OS+x} ] ; then
+  pawsey="y"
+  if [ "$(whoami)" == "maali" ] ; then
+    basedir=${basedir:-"/pawsey/$PAWSEY_CLUSTER_OS"}
+  else
+    basedir=${basedir:-"$MYGROUP/software/$PAWSEY_CLUSTER_OS"}
+  fi
+elif [ ! -z ${PAWSEY_OS+x} ] ; then
+  pawsey="y"
+  if [ "$(whoami)" == "maali" ] ; then
+    basedir=${basedir:-"/pawsey/$PAWSEY_OS"}
+  else
+    basedir=${basedir:-"$MYGROUP/software/$PAWSEY_OS"}
+  fi
+fi
+##################################################
+
+
+
+# relevant variables - you can CUSTOMISE this
+# basename for following variables
+basedir=${basedir:-"/data/work/wrappie"}
 # root directory for applications (images+wrappers)
-rootdir=${rootdir:-"/data/work/wrappie/apps"}
-# root directory for modules
-moduledir=${moduledir:-"/data/work/wrappie/modules"}
+rootdir=${rootdir:-"$basedir/containers"}
+# root directory for modulefiles
+moduledir=${moduledir:-"$basedir/modulefiles"}
 # production directory for data/analyses. only used for final output. can be a comma separated list, e.g. "/data/work,/data/db"
 workdir=${workdir:-"/data"}
 
@@ -13,9 +36,10 @@ workdir=${workdir:-"/data"}
 # welcome screen
 wrappie=${0##*/}
 cat << EOU
-$wrappie - a tool for automated deployment of applications using container wrappers and modules
+$wrappie - a tool for automated deployment of applications using container wrappers and modulefiles
 
 Using the following paths:
+basedir : $basedir
 rootdir : $rootdir
 moduledir : $moduledir
 workdir : $workdir
@@ -33,14 +57,23 @@ elif [ ! -s $1 ] ; then
 fi
 listfile=$1
 
-# create directories for applications and modules
+
+# some Pawsey specific settings
+pawsey_load=""
+if [ "$pawsey" == "y" ] ; then
+  module load singularity
+  pawsey_load="module load singularity"
+fi
+
+# create directories for applications and modulefiles
 echo Creating root directory for applications $rootdir ..
 mkdir -p $rootdir
-echo Creating root directory for modules $moduledir ..
+echo Creating root directory for modulefiles $moduledir ..
 mkdir -p $moduledir
 
 # initialise list of tool directories
 appdir_list=""
+
 
 # main loop
 # read the list of requirements and do stuff
@@ -73,8 +106,8 @@ while read line ; do
   echo Pulling container image $image ..
   mkdir -p $appdir
   singularity pull --dir $appdir $sif $image
-  # create module
-  echo Creating module for tool $tool tag $tag ..
+  # create modulefile
+  echo Creating modulefile for tool $tool tag $tag ..
   mkdir -p $moduledir/$tool
   cat << EOM >$moduledir/$tool/$tag
 #%Module1.0######################################################################
@@ -88,6 +121,7 @@ proc ModulesHelp { } {
 
 module-whatis   "edits the PATH to use the tool $tool , tag $tag"
 
+$pawsey_load
 prepend-path     PATH            $appdir
 
 EOM
@@ -113,9 +147,10 @@ done < $listfile
 
 
 # display information on how to configure shell environment
-cat << EOD
-
-All done!
+echo "
+All done!"
+if [ "$pawsey" != "y" ] ; then
+  cat << EOD
 
 For proper functioning of this setup, ensure these two definitions are in your ~/.bash_profile :
 
@@ -123,5 +158,6 @@ For proper functioning of this setup, ensure these two definitions are in your ~
 module use $moduledir   #$wrappie
 export SINGULARITY_BINDPATH=\$SINGULARITY_BINDPATH,$workdir   #$wrappie
 ##############################
-
 EOD
+fi
+echo ""
