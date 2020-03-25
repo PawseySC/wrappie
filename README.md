@@ -32,7 +32,7 @@ docker://ubuntu:18.04
 - pwd
 ```
 
-with image addresses, followed by a dashed list of commands you will need to run from that image. Lines starting with `#` will be ignored.
+with image addresses, followed by a dashed list of commands you will need to run from that image. If the image has GPU capabilities, just add a dashed item `GPU` as the *first* item for the image. Lines starting with `#` will be ignored.
 
 Finally run the script:
 

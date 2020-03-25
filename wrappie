@@ -42,7 +42,6 @@ mkdir -p $moduledir
 # initialise list of tool directories
 appdir_list=""
 
-
 # main loop
 # read the list of requirements and do stuff
 while read line ; do
@@ -68,6 +67,8 @@ while read line ; do
   appdir="$rootdir/$tool/$tag"
   appdir_list+="${appdir}:"
   sif=${siftmp/:/_}.sif
+  # initialise GPU flag for this image
+  gpu=""
   # pull image
   echo Pulling container image $image ..
   mkdir -p $appdir
@@ -95,11 +96,15 @@ EOM
  # it's a command, so create the wrapper script
  elif [ $type -eq 1 ] ; then
   cmd=${line##* }
+  if [ "$cmd" == "GPU" ] ; then
+    gpu="--nv "
+    continue
+  fi
   echo - Creating wrapper for command $cmd
   cat << EOW >$appdir/$cmd
 #!/bin/bash
 
-singularity exec $appdir/$sif $cmd "\$@"
+singularity exec $gpu$appdir/$sif $cmd "\$@"
 EOW
   chmod +x $appdir/$cmd
  fi 
