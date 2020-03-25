@@ -1,6 +1,6 @@
 # wrappie
 
-![logo_wrappie](logo_wrappie.png)
+![logo_wrappie](logo_wrappie.png =140x124)
 
 **wrappie** is a tool for automated deployment of applications using container wrappers and modules. 
 
