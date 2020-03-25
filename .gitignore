@@ -1,2 +1,4 @@
 apps/*
+containers/*
+modulefiles/*
 modules/*
