@@ -2,6 +2,8 @@
 
 ![logo_wrappie](logo_wrappie.png =140x124)
 
+<img src="logo_wrappie.png" alt="logo_wrappie" width="140"/>
+
 **wrappie** is a tool for automated deployment of applications using container wrappers and modules. 
 
 Find us on [GitHub](https://github.com/marcodelapierre/container-wrappers)
