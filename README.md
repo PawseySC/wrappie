@@ -1,6 +1,8 @@
 # wrappie
 
-A tool for automated deployment of applications using container wrappers and modules. 
+![logo_wrappie](logo_wrappie.png =140x)
+
+**wrappie** is a tool for automated deployment of applications using container wrappers and modules. 
 
 Find us on [GitHub](https://github.com/marcodelapierre/container-wrappers)
 
