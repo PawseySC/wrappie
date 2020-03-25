@@ -3,11 +3,24 @@
 
 # relevant variables - can be customised
 # root directory for applications (images+wrappers)
-rootdir=${rootdir:-"/data/work/wrappers-sgl/apps"}
+rootdir=${rootdir:-"/data/work/wrappie/apps"}
 # root directory for modules
-moduledir=${moduledir:-"/data/work/wrappers-sgl/modules"}
-# production directory for data/analyses. only used for final output. can be a comma separated list 
-workdir=${workdir:-"/data/work,/data/db"}
+moduledir=${moduledir:-"/data/work/wrappie/modules"}
+# production directory for data/analyses. only used for final output. can be a comma separated list, e.g. "/data/work,/data/db"
+workdir=${workdir:-"/data"}
+
+
+# welcome screen
+wrappie=${0##*/}
+cat << EOU
+$wrappie - a tool for automated deployment of applications using container wrappers and modules
+
+Using the following paths:
+rootdir : $rootdir
+moduledir : $moduledir
+workdir : $workdir
+
+EOU
 
 
 # prompt for list file
@@ -47,6 +60,7 @@ while read line ; do
  # it's an image
  if [ $type -eq 0 ] ; then
   # save name&infos
+  echo ""
   image=$line
   siftmp=${image##*/}
   tool=${siftmp%:*}
@@ -101,8 +115,8 @@ All done!
 For proper functioning of this setup, ensure these two definitions are in your ~/.bash_profile :
 
 ##############################
-module use $moduledir   #hpc-containers-wrappers
-export SINGULARITY_BINDPATH=\$SINGULARITY_BINDPATH,$workdir   #hpc-containers-wrappers
+module use $moduledir   #$wrappie
+export SINGULARITY_BINDPATH=\$SINGULARITY_BINDPATH,$workdir   #$wrappie
 ##############################
 
 EOD

@@ -1,6 +1,6 @@
-# container-wrappers
+# wrappie
 
-container-wrappers - a prototype tool for automated deployment of applications using container wrappers and modules. 
+A tool for automated deployment of applications using container wrappers and modules. 
 
 Find us on [GitHub](https://github.com/marcodelapierre/container-wrappers)
 
