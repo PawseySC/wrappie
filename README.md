@@ -1,6 +1,6 @@
 # container-wrappers
 
-Prototype for automated deployment of applications as bash wrappers around containers.
+container-wrappers - a prototype tool for automated deployment of applications using container wrappers and modules. 
 
 Find us on [GitHub](https://github.com/marcodelapierre/container-wrappers)
 
@@ -9,12 +9,17 @@ Find us on [GitHub](https://github.com/marcodelapierre/container-wrappers)
 
 * [Singularity](http://sylabs.io/singularity) : template installation [script](prereqs/install-singularity.sh)
 
+* A module system, either 
+    * [Environment modules](https://modules.readthedocs.io/en/latest/module.html) : template installation [script](prereqs/install-modules.sh)
+    * [Lmod](https://lmod.readthedocs.io/en/latest/)
+
 
 ## Quick start
 
 Edit the first few lines of the `setup.sh` script to provide values for the following variables:
-* `rootdir`: upper level directory for the directory tree of packages (containers and wrappers). The tree has the format: `rootdir/tool/tag`
-* `workdir`: work directory for production, where data are stored (can be comma separated list)
+* `rootdir`: upper level path for the directory tree of packages (containers and wrappers). The tree has the format: `rootdir/tool/tag/`
+* `moduledir`: upper level path for the directory tree of modules, format `moduledir/tool/tag`
+* `workdir`: work directory for production, where data are stored. Can be comma separated list, only used to display information
 
 Write a text file, *e.g.* `list_apps`, of this form:
 
@@ -38,15 +43,10 @@ At the end of the setup, the script will advise on a couple of variable definiti
 For proper functioning of this setup, ensure these two definitions are in your ~/.bash_profile :
 
 ##############################
-export PATH=$PATH:[..]
+module use [..]
 export SINGULARITY_BINDPATH=$SINGULARITY_BINDPATH,[..]
 ##############################
 ```
-
-
-## Current known limitations
-
-The script does not setup modules, so maintaining multiple version of the same package can be challenging.
 
 
 ## Useful resources
