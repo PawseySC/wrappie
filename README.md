@@ -53,3 +53,9 @@ export SINGULARITY_BINDPATH=$SINGULARITY_BINDPATH,[..]
 
 Checkout this tool to install containerised applications, including bash wrappers and modules: [Quay Containers](https://github.com/alexiswl/quay_containers).
 
+
+## Authors
+
+Marco De La Pierre <marco.delapierre@pawsey.org.au>  
+Audrey Stott <audrey.stott@pawsey.org.au>  
+Sarah Beecroft <sarah.beecroft@pawsey.org.au>  
