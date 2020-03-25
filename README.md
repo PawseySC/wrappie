@@ -19,7 +19,7 @@ Find it on [GitHub](https://github.com/marcodelapierre/wrappie)
 
 ## Quick start
 
-Lines 27-33 of the `wrappie` script provide values for the following variables:
+Lines 20-26 of the `wrappie` script provide values for the following variables:
 * `basedir`: basename for the following two variables
 * `rootdir`: upper level path for the directory tree of packages (containers and wrappers). The tree has the format: `rootdir/tool/tag/`
 * `moduledir`: upper level path for the directory tree of modules, format `moduledir/tool/tag`

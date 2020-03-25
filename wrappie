@@ -3,14 +3,7 @@
 
 ##################################################
 # Don't edit this bit! Specific to Pawsey systems
-if [ ! -z ${PAWSEY_CLUSTER_OS+x} ] ; then
-  pawsey="y"
-  if [ "$(whoami)" == "maali" ] ; then
-    basedir=${basedir:-"/pawsey/$PAWSEY_CLUSTER_OS"}
-  else
-    basedir=${basedir:-"$MYGROUP/software/$PAWSEY_CLUSTER_OS"}
-  fi
-elif [ ! -z ${PAWSEY_OS+x} ] ; then
+if [ ! -z ${PAWSEY_OS+x} ] ; then
   pawsey="y"
   if [ "$(whoami)" == "maali" ] ; then
     basedir=${basedir:-"/pawsey/$PAWSEY_OS"}
