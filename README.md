@@ -61,3 +61,5 @@ Checkout this tool to install containerised applications, including bash wrapper
 Marco De La Pierre <marco.delapierre@pawsey.org.au>  
 Audrey Stott <audrey.stott@pawsey.org.au>  
 Sarah Beecroft <sarah.beecroft@pawsey.org.au>  
+
+Guess what? We are cat lovers!
