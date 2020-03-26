@@ -63,8 +63,16 @@ fi
 # create directories for applications and modulefiles
 echo Creating root directory for applications $rootdir ..
 mkdir -p $rootdir
+if [ "$?" -ne 0 ] ; then
+  echo Failed to create $rootdir. Exiting.
+  exit
+fi
 echo Creating root directory for modulefiles $moduledir ..
 mkdir -p $moduledir
+if [ "$?" -ne 0 ] ; then
+  echo Failed to create $moduledir. Exiting.
+  exit
+fi
 
 # initialise list of tool directories
 appdir_list=""
@@ -158,3 +166,4 @@ EOD
 fi
 echo ""
 
+exit 0
