@@ -70,6 +70,13 @@ At runtime, `wrappie` can recognise if it is being run on Pawsey systems, and ad
 Checkout this alternative tool to install containerised applications, including bash wrappers and modules: [Quay Containers](https://github.com/alexiswl/quay_containers).
 
 
+## TO-DO
+
+* standardise format for specifying packages? (YAML/JSON)
+* move to PawseySC git
+* ..
+
+
 ## Authors
 
 Marco De La Pierre <marco.delapierre@pawsey.org.au>  
