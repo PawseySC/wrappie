@@ -27,7 +27,7 @@ Lines 20-26 of the `wrappie` script provide values for the following variables:
 
 You can specify customised values for these variables either in the shell environment, or by editing those lines in `wrappie`.
 
-Write a text file, *e.g.* `list_apps`, of this form:
+Write a text file, *e.g.* `dummy_list`, of this form:
 
 ```
 docker://ubuntu:18.04
@@ -41,7 +41,7 @@ Lines starting with `#` will be ignored.
 Finally run `wrappie`:
 
 ```
-./wrappie list_apps
+./wrappie dummy_list
 ```
 
 At the end of the process (non Pawsey HPC systems only), an output will advise on a couple of variable definitions to be added in your `~/.bash_profile`, something like:
