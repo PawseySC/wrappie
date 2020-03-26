@@ -58,7 +58,9 @@ export SINGULARITY_BINDPATH=$SINGULARITY_BINDPATH,[..]
 
 ## Pawsey HPC systems
 
-`wrappie` can recognise if it is being run on Pawsey systems, and adjust the installation paths accordingly:
+To install `wrappie`, a `maali` cygnet file is available in the `extras/` directory.
+
+At runtime, `wrappie` can recognise if it is being run on Pawsey systems, and adjust the installation paths accordingly:
 * for regular users, the `basedir` will be set to `$MYGROUP/software/$PAWSEY_OS`
 * for super user `maali`, system paths will be set
 
