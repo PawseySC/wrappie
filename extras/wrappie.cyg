@@ -16,7 +16,7 @@ EOF
 MAALI_TOOL_COMPILERS="binary"
 
 # URL to download source
-MAALI_URL="https:/github.com/marcodelapierre/$MAALI_TOOL_NAME/archive/$MAALI_TOOL_VERSION.tar.gz"
+MAALI_URL="https://github.com/marcodelapierre/$MAALI_TOOL_NAME/archive/$MAALI_TOOL_VERSION.tar.gz"
 # Local filename for downloaded source file
 MAALI_DST="$MAALI_SRC/$MAALI_TOOL_NAME-$MAALI_TOOL_VERSION.tar.gz"
 # Directory obtained when unzipping source file (name must match the actual content of the source file)
