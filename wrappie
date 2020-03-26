@@ -124,7 +124,8 @@ EOM
 
  # it's a command, so create the wrapper script
  elif [ $type -eq 1 ] ; then
-  cmd=${line##* }
+  cmd=${line#*-}
+  cmd=${cmd##* }
   if [ "$cmd" == "GPU" ] ; then
     gpu="--nv "
     continue
@@ -156,3 +157,4 @@ export SINGULARITY_BINDPATH=\$SINGULARITY_BINDPATH,$workdir   #$wrappie
 EOD
 fi
 echo ""
+
