@@ -1,0 +1,45 @@
+##############################################################################
+# maali cygnet file for wrappie
+##############################################################################
+
+# Package description
+
+read -r -d '' MAALI_MODULE_WHATIS << EOF
+
+wrappie is a tool for automated deployment of applications using containers, bash wrappers and modules
+
+Website: https://github.com/marcodelapierre/wrappie
+
+EOF
+
+# Compiler
+MAALI_TOOL_COMPILERS="binary"
+
+# URL to download source
+MAALI_URL="https:/github.com/marcodelapierre/$MAALI_TOOL_NAME/archive/$MAALI_TOOL_VERSION.tar.gz"
+# Local filename for downloaded source file
+MAALI_DST="$MAALI_SRC/$MAALI_TOOL_NAME-$MAALI_TOOL_VERSION.tar.gz"
+# Directory obtained when unzipping source file (name must match the actual content of the source file)
+MAALI_TOOL_BUILD_DIR="$MAALI_BUILD_DIR/${MAALI_TOOL_NAME}-${MAALI_TOOL_VERSION}"
+
+# Build-only module dependencies
+MAALI_TOOL_BUILD_PREREQ="singularity"
+
+# Type of tool
+MAALI_TOOL_TYPE="tools"
+
+# Variables to be defined in the modulefile
+MAALI_MODULE_SET_PATH=1
+##############################################################################
+# Functions to be redefined
+
+function maali_build {
+
+  cd $MAALI_TOOL_BUILD_DIR
+
+  maali_run "mkdir $MAALI_INSTALL_DIR/bin"
+  maali_run "install -m 755 wrappie $MAALI_INSTALL_DIR/bin"
+
+}
+
+##############################################################################
