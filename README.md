@@ -1,6 +1,6 @@
 # wrappie
 
-<img src="extras/logo_wrappie.png" alt="logo_wrappie" width="140"/>
+<img src="extras/logo_wrappie.png" alt="logo_wrappie" width="140" height="140"/>
 
 **wrappie** is a tool for automated deployment of applications using containers, bash wrappers and modules.  
 Containers are used under the hood while users interact with modules, resulting in the typical user experience of a HPC shared system.
