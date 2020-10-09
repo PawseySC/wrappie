@@ -20,10 +20,10 @@ Find it on [GitHub](https://github.com/marcodelapierre/wrappie)
 ## Quick start
 
 Lines 20-26 of the `wrappie` script provide values for the following variables:
-* `basedir`: basename for the following two variables
-* `rootdir`: upper level path for the directory tree of packages (containers and wrappers). The tree has the format: `rootdir/tool/tag/`
-* `moduledir`: upper level path for the directory tree of modules, format `moduledir/tool/tag`
-* `workdir`: work directory for production, where data are stored. Can be comma separated list, only used to display information
+* `basedir`: default basename for the following two variables
+* `rootdir`: upper level path for the directory tree of packages (containers and wrappers). The tree has the default format: `basedir/containers/tool/tag/`
+* `moduledir`: upper level path for the directory tree of modules, default format `basedir/modulefiles/tool/tag`
+* `workdir`: directory(ies) to be bound mounted in containers. Can be comma separated list, only used to display information
 
 You can specify customised values for these variables either in the shell environment, or by editing those lines in `wrappie`.
 

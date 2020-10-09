@@ -24,7 +24,7 @@ basedir=${basedir:-"/data/work/wrappie"}
 rootdir=${rootdir:-"$basedir/containers"}
 # root directory for modulefiles
 moduledir=${moduledir:-"$basedir/modulefiles"}
-# production directory for data/analyses. only used for final output. can be a comma separated list, e.g. "/data/work,/data/db"
+# host directory(ies) to be bound mounted in containers. only used for final output. can be a comma separated list, e.g. "/data/work,/data/db"
 workdir=${workdir:-"/data"}
 
 
