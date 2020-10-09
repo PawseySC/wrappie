@@ -1,4 +1,4 @@
-# wrappie
+# wrappie - still in BETA - user interface might change
 
 <img src="extras/logo_wrappie.png" alt="logo_wrappie" width="140" height="140"/>
 
