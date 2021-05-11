@@ -8,6 +8,11 @@ Containers are used under the hood while users interact with modules, resulting 
 Find it on [GitHub](https://github.com/marcodelapierre/wrappie)
 
 
+## IMPORTANT UPDATE
+
+*May 2021*: the original developers of Singularity have released a tool that includes most (if not all) functionalities of `wrappie`: [Singularity Registry HPC](https://github.com/singularityhub/singularity-hpc), or `shpc`.  Our team will evaluate this tool prior to further developing `wrappie`.
+
+
 ## Software requirements
 
 * [Singularity](http://sylabs.io/singularity) : template installation [script](prereqs/install-singularity.sh)
@@ -68,9 +73,9 @@ At runtime, `wrappie` can recognise if it is being run on Pawsey systems, and ad
 ## Useful resources
 
 Checkout this alternative tool to install containerised applications, including bash wrappers and modules: 
-* [Quay Containers](https://github.com/alexiswl/quay_containers)
+* [Singularity Registry HPC](https://github.com/singularityhub/singularity-hpc)
 * [Community Collections](https://github.com/community-collections/community-collections)
-* [Singularity HPC](https://github.com/singularityhub/singularity-hpc)
+* [Quay Containers](https://github.com/alexiswl/quay_containers)
 
 
 ## TO-DO
