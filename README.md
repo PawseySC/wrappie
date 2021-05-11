@@ -20,7 +20,7 @@ Find it on [GitHub](https://github.com/marcodelapierre/wrappie)
 ## Quick start
 
 Lines 20-26 of the `wrappie` script provide values for the following variables:
-* `basedir`: default basename for the following two variables
+* `basedir`: default base-name for the following two variables
 * `rootdir`: upper level path for the directory tree of packages (containers and wrappers). The tree has the default format: `basedir/containers/tool/tag/`
 * `moduledir`: upper level path for the directory tree of modules, default format `basedir/modulefiles/tool/tag`
 * `workdir`: directory(ies) to be bound mounted in containers. Can be comma separated list, only used to display information
@@ -67,13 +67,16 @@ At runtime, `wrappie` can recognise if it is being run on Pawsey systems, and ad
 
 ## Useful resources
 
-Checkout this alternative tool to install containerised applications, including bash wrappers and modules: [Quay Containers](https://github.com/alexiswl/quay_containers).
+Checkout this alternative tool to install containerised applications, including bash wrappers and modules: 
+* [Quay Containers](https://github.com/alexiswl/quay_containers)
+* [Community Collections](https://github.com/community-collections/community-collections)
+* [Singularity HPC](https://github.com/singularityhub/singularity-hpc)
 
 
 ## TO-DO
 
-* standardise format for specifying packages? (YAML/JSON)
-* move to PawseySC git
+* port the code-base to Python
+* port package recipes to YAML
 * ..
 
 
